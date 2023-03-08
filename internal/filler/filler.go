@@ -1,6 +1,10 @@
 package filler
 
-import "math/rand"
+import (
+	"math/rand"
+
+	"github.com/google/uuid"
+)
 
 func randomBytes(n int) []byte {
 	const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -13,4 +17,8 @@ func randomBytes(n int) []byte {
 
 func GetFillers() (seed []byte, padding string) {
 	return randomBytes(16), string(randomBytes(16))
+}
+
+func GetUUID() string {
+	return uuid.New().String()
 }

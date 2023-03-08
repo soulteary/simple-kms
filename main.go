@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/denisbrodbeck/machineid"
-	"github.com/google/uuid"
 	"github.com/soulteary/simple-kms/internal/cmd"
 	"github.com/soulteary/simple-kms/internal/define"
 	"github.com/soulteary/simple-kms/internal/filler"
@@ -29,7 +28,7 @@ func main() {
 	}
 
 	// 1. generate a random identifier
-	id := uuid.New().String()
+	id := filler.GetUUID()
 
 	// 2. try to fetch the machine id
 	machineID, err := machineid.ID()
@@ -45,7 +44,7 @@ func main() {
 	}
 
 	// 4. generate a encrypted id with accesskey
-	ak := cmd.GetAccessKey()
+	ak := cmd.GetAccessKey(false)
 	// 4.1 generate seed and padding
 	seed, padding := filler.GetFillers()
 	if ak != "" {
