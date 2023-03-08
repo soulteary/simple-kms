@@ -7,6 +7,9 @@ require (
 	github.com/google/uuid v1.3.0
 )
 
-require github.com/soulteary/go-cloud-id v0.1.2
+require (
+	github.com/soulteary/go-cloud-id v0.1.2
+	golang.org/x/text v0.8.0
+)
 
 replace github.com/denisbrodbeck/machineid => ./pkg/denisbrodbeck/machineid

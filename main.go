@@ -1,14 +1,17 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 	"time"
 
 	"github.com/denisbrodbeck/machineid"
 	"github.com/google/uuid"
-	"github.com/soulteary/simple-kms/internal/cli"
+	"github.com/soulteary/simple-kms/internal/cmd"
+	"github.com/soulteary/simple-kms/internal/define"
 	"github.com/soulteary/simple-kms/internal/filler"
 	"github.com/soulteary/simple-kms/internal/home"
 	"github.com/soulteary/simple-kms/internal/transformer"
@@ -17,6 +20,14 @@ import (
 )
 
 func main() {
+	cliMode := flag.Bool("generate", false, "generate ak/sk pairs")
+	flag.Parse()
+
+	if *cliMode {
+		cmd.Generate()
+		os.Exit(0)
+	}
+
 	// 1. generate a random identifier
 	id := uuid.New().String()
 
@@ -34,7 +45,7 @@ func main() {
 	}
 
 	// 4. generate a encrypted id with accesskey
-	ak := cli.GetAccessKey()
+	ak := cmd.GetAccessKey()
 	// 4.1 generate seed and padding
 	seed, padding := filler.GetFillers()
 	if ak != "" {
@@ -54,22 +65,22 @@ func main() {
 	})
 
 	// api for sharing basic data
-	http.HandleFunc("/config/data", func(w http.ResponseWriter, req *http.Request) {
+	http.HandleFunc(define.API_DATA, func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.Write([]byte(fmt.Sprintf("%s\n%s", id, time.Now().Format("2006-01-02 15:04:05"))))
 	})
 
 	// api for sharing seed
-	http.HandleFunc("/config/seed", func(w http.ResponseWriter, req *http.Request) {
+	http.HandleFunc(define.API_SEED, func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.Write([]byte(fmt.Sprintf("%s\n", string(seed))))
 	})
 
 	// api for sharing padding
-	http.HandleFunc("/config/padding", func(w http.ResponseWriter, req *http.Request) {
+	http.HandleFunc(define.API_PADDING, func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.Write([]byte(fmt.Sprintf("%s\n", padding)))
 	})
 
-	http.ListenAndServe(":8090", nil)
+	http.ListenAndServe(define.DEFAULT_PORT, nil)
 }
