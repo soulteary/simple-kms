@@ -2,16 +2,22 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/soulteary/simple-kms/internal/define"
 	"github.com/soulteary/simple-kms/internal/transformer"
 )
 
 // const BASE_API_IN_DOCKER = "http://host.docker.internal"
-const BASE_API_HOST = "http://localhost"
 
 func GetDockerApiAddr(api string) string {
-	return fmt.Sprintf("%s%s%s", BASE_API_HOST, define.DEFAULT_PORT, api)
+	return fmt.Sprintf("%s%s%s", define.BASE_API_HOST, define.DEFAULT_PORT, api)
+}
+
+func GetAccessKey() string {
+	key := os.Getenv("ACCESS_KEY")
+	return strings.TrimSpace(key)
 }
 
 func Generate() {

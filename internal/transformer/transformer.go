@@ -31,7 +31,7 @@ func Decode(text string, secret string, seed []byte, padding string) string {
 
 	encoded, err := base64.StdEncoding.DecodeString(text)
 	if err != nil {
-		fmt.Println(err, 2)
+		fmt.Println(err)
 		return ""
 	}
 
