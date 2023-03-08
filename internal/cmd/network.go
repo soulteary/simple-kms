@@ -20,6 +20,10 @@ func GetApi(primary string, fallback string) string {
 		}
 	}
 
+	lines := strings.Split(string(data), "\n")
+	if len(lines) == 0 {
+		return ""
+	}
 	return strings.TrimSpace(strings.Split(string(data), "\n")[0])
 }
 
