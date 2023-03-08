@@ -1,0 +1,4 @@
+github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
+github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
+github.com/soulteary/go-cloud-id v0.1.2 h1:fYP8xFOsXlO/Er48U3u8YFsjZS1S4ddKW/M38dCXtPg=
+github.com/soulteary/go-cloud-id v0.1.2/go.mod h1:kDMGms9XQWt0muhfGY29PhI17ebUdl7W3sUX8ih2aG8=
