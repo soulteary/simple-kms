@@ -19,3 +19,8 @@ SECRET_KEY=ddeed7d2-ee42-5728-a06b-b70ee6f7d703
 ```
 
 3. Reference `example` to complete your project, and run your project with the `ACCESS_KEY` and `SECRET_KEY`, if the key pairs does not match, the program will automatically exit, or you can customize other logic as you like.
+
+## Credits
+
+- [denisbrodbeck/machineid](https://github.com/denisbrodbeck/machineid), [MIT license](https://github.com/denisbrodbeck/machineid/blob/master/LICENSE.md)
+- [Homepage Design](https://codepen.io/LukyVj/pen/YzOXepM), [@LukyVj](https://github.com/LukyVj)
