@@ -31,6 +31,11 @@ func Generate() {
 	padding := GetApi(GetDockerApiAddr(define.API_PADDING), "")
 
 	accessKey := GetAccessKey(true)
+	if accessKey == "" {
+		fmt.Println("ACCESS_KEY is empty")
+		return
+	}
+
 	secretKey := transformer.Decode(encoded, accessKey, []byte(seed), padding)
 	result := fmt.Sprintf("ACCESS_KEY=%s\nSECRET_KEY=%s", accessKey, secretKey)
 	fmt.Println(result)
