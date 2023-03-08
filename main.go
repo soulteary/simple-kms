@@ -20,10 +20,16 @@ import (
 
 func main() {
 	cliMode := flag.Bool("generate", false, "generate ak/sk pairs")
+	apiMode := flag.Bool("generate-by-api", false, "generate ak/sk pairs")
 	flag.Parse()
 
 	if *cliMode {
-		cmd.Generate()
+		cmd.GenerateSecretByCli()
+		os.Exit(0)
+	}
+
+	if *apiMode {
+		cmd.GenerateSecretByAPI()
 		os.Exit(0)
 	}
 

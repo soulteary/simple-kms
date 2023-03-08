@@ -25,7 +25,7 @@ func GetAccessKey(isCli bool) string {
 	return key
 }
 
-func Generate() {
+func GenerateSecretByAPI() {
 	encoded := GetApi(GetDockerApiAddr(define.API_DATA), "")
 	seed := GetApi(GetDockerApiAddr(define.API_SEED), "")
 	padding := GetApi(GetDockerApiAddr(define.API_PADDING), "")
@@ -38,5 +38,10 @@ func Generate() {
 
 	secretKey := transformer.Decode(encoded, accessKey, []byte(seed), padding)
 	result := fmt.Sprintf("ACCESS_KEY=%s\nSECRET_KEY=%s", accessKey, secretKey)
+	fmt.Println(result)
+}
+
+func GenerateSecretByCli() {
+	result := fmt.Sprintf("ACCESS_KEY=%s\nSECRET_KEY=%s", filler.GetUUID(), filler.GetUUID())
 	fmt.Println(result)
 }
