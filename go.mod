@@ -9,7 +9,7 @@ require (
 
 require (
 	github.com/soulteary/go-cloud-id v0.1.2
-	golang.org/x/text v0.8.0
+	golang.org/x/text v0.9.0
 )
 
 replace github.com/denisbrodbeck/machineid => ./pkg/denisbrodbeck/machineid
